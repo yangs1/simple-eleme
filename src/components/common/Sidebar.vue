@@ -37,4 +37,7 @@
     .sidebar-menu{
         text-align: left!important;
     }
+    ul li{
+        padding-right: 0!important;
+    }
 </style>

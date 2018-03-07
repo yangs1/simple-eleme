@@ -7,6 +7,7 @@ import Home from '@/components/common/Home'
 
 import Foods from '@/components/page/Foods'
 import Menus from '@/components/page/Menus'
+import Add from '@/components/page/AddFood'
 Vue.use(Router)
 
 const Foo = {template: '<div>foo</div>'}
@@ -25,7 +26,7 @@ export default new Router({
                 {
                     // 当 /user/:id/profile 匹配成功，
                     // UserProfile 会被渲染在 User 的 <router-view> 中
-                    path: '/f',
+                    path: 'f',
                     component: Foods
                 },
                 {
@@ -33,6 +34,10 @@ export default new Router({
                     // UserPosts 会被渲染在 User 的 <router-view> 中
                     path: '/',
                     component: Menus
+                },
+                {
+                    path: 'a',
+                    component: Add
                 }
             ]
         }

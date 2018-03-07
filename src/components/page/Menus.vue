@@ -9,7 +9,7 @@
                     闽菜
                 </li>
                 <li>
-                    粤菜
+                    粤菜{{test}}
                 </li>
                 <li>
                     家常便饭
@@ -19,7 +19,7 @@
 
 
         <el-main class="foods-main">
-            <h5> 天天特价 </h5>
+            <h5> 天天特价 {{test}}</h5>
             <el-row class="food-cards" :gutter="10">
 
                 <el-col :span="8" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 0 : 0">
@@ -37,10 +37,15 @@
             </el-row>
 
         </el-main>
+
+        <v-fix-button></v-fix-button>
     </el-container>
 </template>
 
 <script>
+
+    import vFixButton from './FixButton.vue';
+
     export default {
         data() {
             const item = {
@@ -49,8 +54,32 @@
                 address: '上海市普陀区金沙江路 1518 弄'
             };
             return {
-                currentDate: new Date()
+                currentDate: new Date(),
+                test:"666",
             };
+        },
+        components: {
+            vFixButton
+        },
+        methods: {
+            open3() {
+                this.$prompt('请输入邮箱', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+                    inputErrorMessage: '邮箱格式不正确'
+                }).then(({ value }) => {
+                    this.$message({
+                        type: 'success',
+                        message: '你的邮箱是: ' + value
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
+                });
+            }
         }
     };
 </script>
@@ -120,4 +149,43 @@
     .food-cards .el-card{
         margin-top: 15px;
     }
+
+    .fixed-button{
+        width: 65px;
+        background-color: #e20f41;
+        position: absolute;
+        right: 35px;
+        bottom: 60px;
+        font-size: 18px;
+        cursor: pointer;
+
+    }
+ .fixed-button:hover .circular-card.foods, .fixed-button:hover .circular-card.menus{
+
+     display: block;
+ }
+
+ .fixed-button .circular-card{
+     border-radius: 100%;
+     width: 65px;
+     height: 55px;
+     padding-top: 10px;
+     margin-top: 10px;
+ }
+ .fixed-button .circular-card p{
+     margin-top: 0;
+     font-size: 12px;
+ }
+
+ .fixed-button .circular-card.main{
+     background-color: aqua;
+ }
+ .fixed-button .circular-card.foods{
+     background-color: #2f2eff;
+     display: none;
+ }
+ .fixed-button .circular-card.menus{
+     background-color: #40ff3a;
+     display: none;
+ }
 </style>

@@ -7,7 +7,7 @@
         </el-header>
         <el-container style="">
 
-            <el-aside  style=" max-width: 150px; background-color: aqua; ">
+            <el-aside  style="background-color: aqua; " >
                 <v-sidebar></v-sidebar>
             </el-aside>
 
@@ -40,7 +40,9 @@
         text-align: center;
         line-height: 60px;
     }
-
+    .el-aside{
+        width: 150px;
+    }
     .el-main {
         background-color: #E9EEF3;
         color: #333;
